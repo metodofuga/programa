@@ -1,0 +1,237 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>FUGA · Direcciones visuales v3</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,500;9..144,700&family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <style>
+    :root{
+      --bg:#f7f1e7;
+      --card:#fffaf3;
+      --navy:#20304e;
+      --muted:#6f675e;
+      --terra:#c06f52;
+      --peach:#f4ddd2;
+      --sage:#d9e7db;
+      --butter:#f0e0ae;
+      --sky:#d9e8f2;
+      --rose:#efcfcc;
+      --border:rgba(32,48,78,.10);
+      --fD:'Fraunces', serif;
+      --fU:'Manrope', sans-serif;
+      --r:22px;
+      --rL:34px;
+      --shadow:0 22px 44px rgba(32,48,78,.07);
+    }
+    *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+    html{scroll-behavior:smooth}
+    body{font-family:var(--fU);background:var(--bg);color:var(--navy);overflow-x:hidden;-webkit-font-smoothing:antialiased}
+    body::after{content:'';position:fixed;inset:0;background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='280' height='280'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.72' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='280' height='280' filter='url(%23n)' opacity='1'/%3E%3C/svg%3E");opacity:.02;pointer-events:none;z-index:9999}
+    a{text-decoration:none;color:inherit}
+    .wrap{max-width:1160px;margin:0 auto;padding:0 30px}
+    nav{display:flex;justify-content:space-between;align-items:center;padding:20px 0 12px;position:sticky;top:0;z-index:50;background:linear-gradient(to bottom, rgba(247,241,231,.96), rgba(247,241,231,.84), rgba(247,241,231,0))}
+    .brand{font-family:var(--fD);font-size:19px;font-weight:700}
+    .nav-note{font-size:12px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:var(--muted)}
+    .hero{padding:24px 0 50px}
+    .hero-grid{display:grid;grid-template-columns:1.02fr .98fr;gap:26px;align-items:center}
+    .badge,.label{display:inline-flex;align-items:center;gap:8px;padding:9px 13px;border-radius:999px;font-size:11px;font-weight:800;letter-spacing:.1em;text-transform:uppercase;color:var(--navy);background:rgba(255,255,255,.54);border:1px solid var(--border);backdrop-filter:blur(6px)}
+    h1{font-family:var(--fD);font-size:clamp(48px,6.4vw,82px);line-height:.95;font-weight:700;max-width:8.5ch;letter-spacing:-.03em;opacity:0;animation:fadeUp .75s .08s ease both}
+    h1 em{font-style:normal;color:var(--terra)}
+    .hero-sub{font-size:18px;line-height:1.6;max-width:34ch;color:var(--muted);margin:18px 0 18px;font-weight:500;opacity:0;animation:fadeUp .75s .18s ease both}
+    .hero-sub strong{color:var(--navy)}
+    .chips{display:flex;flex-wrap:wrap;gap:10px;margin-bottom:24px;opacity:0;animation:fadeUp .75s .28s ease both}
+    .chip{font-size:13px;font-weight:700;padding:10px 13px;border-radius:999px;border:1px solid var(--border);background:rgba(255,255,255,.56)}
+    .actions{display:flex;gap:12px;flex-wrap:wrap;opacity:0;animation:fadeUp .75s .38s ease both}
+    .btn{display:inline-flex;align-items:center;justify-content:center;padding:15px 18px;border-radius:999px;font-size:14px;font-weight:800;transition:transform .25s ease, background .25s ease, box-shadow .25s ease}
+    .btn:hover{transform:translateY(-2px)}
+    .btn-primary{background:var(--navy);color:#fff9f2;box-shadow:0 12px 24px rgba(32,48,78,.16)}
+    .btn-soft{background:rgba(255,255,255,.56);border:1px solid var(--border)}
+    .playground{position:relative;min-height:590px}
+    .blob{position:absolute;border-radius:36px;filter:blur(.2px);animation:float 8s ease-in-out infinite}
+    .blob.one{width:180px;height:170px;background:var(--sage);top:26px;left:28px;transform:rotate(-8deg)}
+    .blob.two{width:160px;height:150px;background:var(--peach);top:0;right:32px;transform:rotate(10deg);animation-delay:1.3s}
+    .blob.three{width:120px;height:120px;background:var(--butter);bottom:50px;left:12px;border-radius:50%;animation-delay:2s}
+    .blob.four{width:140px;height:110px;background:var(--sky);bottom:24px;right:16px;transform:rotate(-12deg);animation-delay:2.7s}
+    .hero-card{position:absolute;inset:78px 48px 88px 56px;background:linear-gradient(180deg, rgba(255,250,243,.92), rgba(255,250,243,.78));border:1px solid var(--border);border-radius:42px;box-shadow:var(--shadow);padding:28px;backdrop-filter:blur(8px);opacity:0;animation:rise .95s .22s ease both}
+    .hero-card h2{font-family:var(--fD);font-size:34px;line-height:1.02;max-width:9ch;margin:10px 0 14px;letter-spacing:-.03em}
+    .hero-card p,.mini p,.guide p,.short p,.cta p{font-size:15px;line-height:1.75;color:var(--muted)}
+    .card-mini-grid{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-top:18px}
+    .mini{padding:16px;border-radius:24px;background:rgba(255,255,255,.64);border:1px solid rgba(32,48,78,.08)}
+    .mini strong{display:block;font-size:11px;letter-spacing:.1em;text-transform:uppercase;margin-bottom:6px}
+    .sticker{position:absolute;display:inline-flex;align-items:center;justify-content:center;padding:12px 14px;border-radius:22px;font-size:12px;font-weight:800;box-shadow:0 12px 24px rgba(32,48,78,.08);border:1px solid rgba(32,48,78,.08);animation:float 6.5s ease-in-out infinite}
+    .sticker.a{top:66px;right:0;background:#fff7ef}.sticker.b{left:0;bottom:142px;background:var(--sage);animation-delay:1.2s}.sticker.c{right:22px;bottom:52px;background:var(--peach);animation-delay:2.2s}
+    .section{padding:28px 0 74px}
+    .section-head{display:grid;grid-template-columns:.92fr 1.08fr;gap:24px;align-items:end;margin-bottom:24px}
+    h3.section-title{font-family:var(--fD);font-size:clamp(30px,4vw,50px);line-height:1.02;letter-spacing:-.03em;max-width:9ch}
+    .note{font-size:15px;line-height:1.75;color:var(--muted);max-width:58ch}
+    .guides{display:grid;grid-template-columns:repeat(4,1fr);gap:14px}
+    .guide,.short,.cta{background:rgba(255,250,243,.78);border:1px solid var(--border);border-radius:32px;padding:22px;box-shadow:0 14px 28px rgba(32,48,78,.045)}
+    .guide:nth-child(1){background:linear-gradient(180deg, rgba(244,221,210,.66), rgba(255,250,243,.82))}
+    .guide:nth-child(2){background:linear-gradient(180deg, rgba(217,231,219,.68), rgba(255,250,243,.82))}
+    .guide:nth-child(3){background:linear-gradient(180deg, rgba(240,224,174,.58), rgba(255,250,243,.82))}
+    .guide:nth-child(4){background:linear-gradient(180deg, rgba(217,232,242,.62), rgba(255,250,243,.82))}
+    .guide h4,.short h4,.cta h4{font-family:var(--fD);font-size:24px;line-height:1.06;letter-spacing:-.02em;margin:10px 0}
+    .guide .tiny,.short .tiny,.cta .tiny{display:inline-block;font-size:11px;font-weight:800;letter-spacing:.1em;text-transform:uppercase;color:var(--terra)}
+    .guide ul,.short ul{display:grid;gap:9px;padding-left:18px;margin-top:12px;color:var(--muted);font-size:14px;line-height:1.68}
+    .play-band{position:relative}
+    .play-band::before{content:'';position:absolute;inset:24px -26px;background:linear-gradient(90deg, rgba(239,207,204,.54), rgba(217,231,219,.56), rgba(217,232,242,.48));border-radius:48px;z-index:-1}
+    .duo{display:grid;grid-template-columns:1fr 1fr;gap:16px}
+    .short{position:relative;overflow:hidden}
+    .short::after{content:'';position:absolute;width:86px;height:86px;border-radius:28px;background:rgba(255,255,255,.34);right:-12px;bottom:-18px;transform:rotate(12deg)}
+    .cta{display:grid;grid-template-columns:1.02fr .98fr;gap:18px;align-items:center;background:linear-gradient(145deg, rgba(255,250,243,.9), rgba(255,255,255,.62))}
+    .micro-example{padding:18px;border-radius:26px;background:rgba(255,255,255,.54);border:1px solid rgba(32,48,78,.08)}
+    .micro-example h5{font-family:var(--fD);font-size:28px;line-height:1.02;margin-bottom:8px;letter-spacing:-.02em}
+    .micro-example p{font-size:15px;line-height:1.72;color:var(--muted);margin-bottom:10px}
+    .pills-row{display:flex;flex-wrap:wrap;gap:8px}.pills-row span{font-size:12px;font-weight:800;padding:8px 11px;border-radius:999px;background:rgba(217,231,219,.62);border:1px solid rgba(125,155,133,.16)}
+    .reveal{opacity:0;transform:translateY(18px);transition:opacity .7s ease,transform .7s ease}.reveal.visible{opacity:1;transform:none}
+    footer{padding:12px 0 34px;text-align:center}.foot{font-size:12px;color:var(--muted);font-weight:600}
+    @keyframes fadeUp{from{opacity:0;transform:translateY(18px)}to{opacity:1;transform:none}}
+    @keyframes rise{from{opacity:0;transform:translateY(24px) scale(.986)}to{opacity:1;transform:none}}
+    @keyframes float{0%,100%{transform:translateY(0) rotate(0)}50%{transform:translateY(-10px) rotate(2deg)}}
+    @media (max-width: 950px){.hero-grid,.section-head,.duo,.cta{grid-template-columns:1fr}.guides{grid-template-columns:1fr 1fr}.playground{min-height:520px}.hero-card{inset:72px 24px 76px 24px}}
+    @media (max-width: 620px){.wrap{padding:0 18px}.guides,.card-mini-grid{grid-template-columns:1fr}.playground{min-height:500px}.hero-card{padding:22px;border-radius:32px}.actions{flex-direction:column;align-items:stretch}.btn{width:100%}h1{max-width:9.2ch}.hero-sub{font-size:17px}}
+  </style>
+</head>
+<body>
+  <div class="wrap">
+    <nav>
+      <div class="brand">Método FUGA</div>
+      <div class="nav-note">Dirección visual v3</div>
+    </nav>
+
+    <section class="hero">
+      <div class="hero-grid">
+        <div>
+          <span class="badge">Más rápido de leer · más amable</span>
+          <h1>Menos “novela”. Más <em>impacto visual</em>.</h1>
+          <p class="hero-sub">Esta dirección cambia el tono tipográfico y visual para que el sitio se sienta <strong>más ágil, más cercano y más vivo</strong>, sin perder cuidado ni seriedad.</p>
+          <div class="chips">
+            <span class="chip">Fraunces para títulos</span>
+            <span class="chip">Manrope para lectura rápida</span>
+            <span class="chip">Más cápsulas y manchas</span>
+          </div>
+          <div class="actions">
+            <a class="btn btn-primary" href="#tipografia">Ver decisiones</a>
+            <a class="btn btn-soft" href="#microcopy">Ver ejemplo corto</a>
+          </div>
+        </div>
+        <div class="playground" aria-hidden="true">
+          <div class="blob one"></div>
+          <div class="blob two"></div>
+          <div class="blob three"></div>
+          <div class="blob four"></div>
+          <div class="sticker a">Menos bloque de texto</div>
+          <div class="sticker b">Más forma redondeada</div>
+          <div class="sticker c">Más juego visual</div>
+          <div class="hero-card">
+            <span class="label">Lo que esta versión explora</span>
+            <h2>Una web que se siente más rápida y más cálida</h2>
+            <p>La tipografía sans en el cuerpo acelera la lectura. Los fondos suaves y los elementos curvos acercan el sitio al mundo de infancia y familias sin volverlo infantil.</p>
+            <div class="card-mini-grid">
+              <div class="mini"><strong>Lectura</strong><p>Frases cortas. Menos explicación. Más golpe visual.</p></div>
+              <div class="mini"><strong>Color</strong><p>Capas salvia, durazno, mantequilla y cielo.</p></div>
+              <div class="mini"><strong>Ritmo</strong><p>Más bloques breves y más pausas.</p></div>
+              <div class="mini"><strong>Tono</strong><p>Menos académico. Más humano.</p></div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section reveal" id="tipografia">
+      <div class="section-head">
+        <div>
+          <span class="label">Tipografía</span>
+          <h3 class="section-title">Cambiar la voz visual sin perder identidad</h3>
+        </div>
+        <p class="note">Aquí el cambio importante es reemplazar la sensación de “texto largo y literario” por una lectura más directa. Una serif más simpática en títulos y una sans moderna en cuerpos puede ayudarte a salir del tono de novela clásica y acercarte a una lectura más rápida. [web:39][file:34]</p>
+      </div>
+      <div class="guides">
+        <article class="guide">
+          <span class="tiny">Títulos</span>
+          <h4>Más amables</h4>
+          <p>Fraunces conserva carácter, pero se siente menos solemne que Playfair.</p>
+        </article>
+        <article class="guide">
+          <span class="tiny">Cuerpos</span>
+          <h4>Más ágiles</h4>
+          <p>Manrope hace que la lectura parezca más clara, corta y contemporánea.</p>
+        </article>
+        <article class="guide">
+          <span class="tiny">Ritmo</span>
+          <h4>Más corto</h4>
+          <p>Menos párrafo continuo y más bloques de información dosificada.</p>
+        </article>
+        <article class="guide">
+          <span class="tiny">Sensación</span>
+          <h4>Más viva</h4>
+          <p>El sitio deja de parecer un documento y empieza a parecer una invitación.</p>
+        </article>
+      </div>
+    </section>
+
+    <section class="section play-band reveal">
+      <div class="duo">
+        <article class="short">
+          <span class="tiny">Color + forma</span>
+          <h4>Más fondos blandos</h4>
+          <p>No solo detrás de secciones completas. También dentro de tarjetas, cápsulas y manchas sueltas.</p>
+          <ul>
+            <li>Superficies suaves.</li>
+            <li>Curvas más grandes.</li>
+            <li>Contraste emocional, no agresivo.</li>
+          </ul>
+        </article>
+        <article class="short">
+          <span class="tiny">Juego visual</span>
+          <h4>Más capas pequeñas</h4>
+          <p>Etiquetas flotantes, stickers suaves, cápsulas y esquinas orgánicas para quitar rigidez.</p>
+          <ul>
+            <li>Pequeños elementos que se mueven.</li>
+            <li>Fondos con color por zonas.</li>
+            <li>Menos cajas rectas “serias”.</li>
+          </ul>
+        </article>
+      </div>
+    </section>
+
+    <section class="section reveal" id="microcopy">
+      <div class="section-head">
+        <div>
+          <span class="label">Microcopy</span>
+          <h3 class="section-title">Buscar frases más cortas y más memorables</h3>
+        </div>
+        <p class="note">En vez de explicar el enfoque durante varias líneas, prueba piezas de texto mucho más breves. El objetivo aquí es que el ojo entre rápido, entienda rápido y recuerde algo.</p>
+      </div>
+      <div class="cta">
+        <div>
+          <span class="tiny">Lógica sugerida</span>
+          <h4>Tres golpes bastan</h4>
+          <p>Qué haces. Para quién. Cómo empezar. Esa triada puede sostener buena parte del hero y de una sección principal sin necesidad de largos desarrollos.</p>
+        </div>
+        <div class="micro-example">
+          <span class="tiny">Ejemplo simple</span>
+          <h5>Cómo puedo ayudar</h5>
+          <p>Regulación, atención y expresión emocional a través de la música.</p>
+          <div class="pills-row">
+            <span>Niños que se frustran fácil</span>
+            <span>Familias que buscan otra forma</span>
+            <span>Primer paso claro</span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <footer>
+      <p class="foot">Maqueta conceptual v3: más juego visual, menos densidad, tipografía más ágil y colores de apoyo más presentes. [file:34]</p>
+    </footer>
+  </div>
+  <script>
+    const io=new IntersectionObserver((entries)=>entries.forEach(e=>{if(e.isIntersecting)e.target.classList.add('visible')}),{threshold:.15});
+    document.querySelectorAll('.reveal').forEach(el=>io.observe(el));
+  </script>
+</body>
+</html>
